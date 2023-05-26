@@ -25,4 +25,10 @@ public class Receita {
     private LocalDate dataReceita;
     private Boolean ativo;
 
+    public Receita(DadosReceita dadosReceita) {
+        this.descricao = dadosReceita.descricao();;
+        this.valor = dadosReceita.valor();
+        this.dataReceita = dadosReceita.dataReceita();
+        this.ativo = true;
+    }
 }
