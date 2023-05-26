@@ -23,12 +23,29 @@ public class Produto {
     private String descricao;
     @Column(name = "valor_unitario")
     private BigDecimal valorUnitario;
+    private Boolean ativo;
 
 
     public Produto(DadosProduto dadosProduto) {
+        this.ativo = true;
         this.nome = dadosProduto.nome();
         this.codigo = dadosProduto.codigo();
         this.descricao = dadosProduto.descricao();
         this.valorUnitario = dadosProduto.valorUnitario();
+    }
+
+    public void atualizarProduto(DadosAtualizacaoProduto dadosAtualizacaoProduto) {
+        if(dadosAtualizacaoProduto.nome() != null) {
+            this.nome = dadosAtualizacaoProduto.nome();
+        }
+        if(dadosAtualizacaoProduto.codigo() != null) {
+            this.codigo = dadosAtualizacaoProduto.codigo();
+        }
+        if(dadosAtualizacaoProduto.descricao() != null) {
+            this.descricao = dadosAtualizacaoProduto.descricao();
+        }
+        if(dadosAtualizacaoProduto.valorUnitario() != null) {
+            this.valorUnitario = dadosAtualizacaoProduto.valorUnitario();
+        }
     }
 }

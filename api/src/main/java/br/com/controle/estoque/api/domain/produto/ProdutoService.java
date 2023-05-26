@@ -13,7 +13,7 @@ public class ProdutoService {
 
 
     public List<ProdutoDTO> listarProdutos() {
-            return produtoRepository.findAll().stream().map(ProdutoDTO::new).toList();
+            return produtoRepository.findAllByAtivoTrue().stream().map(ProdutoDTO::new).toList();
     }
 
     public ProdutoDTO incluirProduto(DadosProduto dadosProduto) {
@@ -22,7 +22,13 @@ public class ProdutoService {
         return new ProdutoDTO(produto);
     }
 
-    public ProdutoDTO listarProdutoPorId(Long id) {
-        return new ProdutoDTO(produtoRepository.getReferenceById(id));
+    public ProdutoDTO listarProduto(Long id) {
+        return new ProdutoDTO(produtoRepository.getReferenceByIdAndAtivoTrue(id));
+    }
+
+    public ProdutoDTO atualizarProduto(DadosAtualizacaoProduto dadosAtualizacaoProduto) {
+        var produto = produtoRepository.getReferenceByIdAndAtivoTrue(dadosAtualizacaoProduto.id());
+        produto.atualizarProduto(dadosAtualizacaoProduto);
+        return new ProdutoDTO(produto);
     }
 }

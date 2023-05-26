@@ -1,5 +1,6 @@
 package br.com.controle.estoque.api.controller;
 
+import br.com.controle.estoque.api.domain.produto.DadosAtualizacaoProduto;
 import br.com.controle.estoque.api.domain.produto.DadosProduto;
 import br.com.controle.estoque.api.domain.produto.ProdutoDTO;
 import br.com.controle.estoque.api.domain.produto.ProdutoService;
@@ -34,8 +35,15 @@ public class ProdutoController {
     }
 
     @GetMapping("/{id}")
+    @Transactional(readOnly = true)
     public ResponseEntity<ProdutoDTO> listarProdutoPorId(@PathVariable Long id) {
-        return ResponseEntity.ok(produtoService.listarProdutoPorId(id));
+        return ResponseEntity.ok(produtoService.listarProduto(id));
+    }
+
+    @PutMapping
+    @Transactional
+    public ResponseEntity<ProdutoDTO> atualizarProdutoPorId(@RequestBody @Valid DadosAtualizacaoProduto dadosAtualizacaoProduto) {
+        return ResponseEntity.ok(produtoService.atualizarProduto(dadosAtualizacaoProduto));
     }
 
 }
