@@ -31,4 +31,9 @@ public class ProdutoService {
         produto.atualizarProduto(dadosAtualizacaoProduto);
         return new ProdutoDTO(produto);
     }
+
+    public void inativarProduto(Long id) {
+        var produto = produtoRepository.getReferenceByIdAndAtivoTrue(id);
+        produto.inativar();
+    }
 }

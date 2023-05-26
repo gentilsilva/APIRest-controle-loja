@@ -48,4 +48,8 @@ public class Produto {
             this.valorUnitario = dadosAtualizacaoProduto.valorUnitario();
         }
     }
+
+    public void inativar() {
+        this.ativo = false;
+    }
 }
