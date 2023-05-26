@@ -31,4 +31,16 @@ public class Despesa {
         this.dataDespesa = dadosDespesa.dataDespesa();
         this.ativo = true;
     }
+
+    public void atualizarDespesa(DadosAtualizacaoDespesa dadosAtualizacaoDespesa) {
+        if(dadosAtualizacaoDespesa.descricao() != null) {
+            this.descricao = dadosAtualizacaoDespesa.descricao();
+        }
+        if(dadosAtualizacaoDespesa.valor() != null) {
+            this.valor = dadosAtualizacaoDespesa.valor();
+        }
+        if(dadosAtualizacaoDespesa.dataDespesa() != null) {
+            this.dataDespesa = dadosAtualizacaoDespesa.dataDespesa();
+        }
+    }
 }

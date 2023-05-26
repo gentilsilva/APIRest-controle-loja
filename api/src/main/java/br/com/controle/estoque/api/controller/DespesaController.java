@@ -1,5 +1,6 @@
 package br.com.controle.estoque.api.controller;
 
+import br.com.controle.estoque.api.domain.despesa.DadosAtualizacaoDespesa;
 import br.com.controle.estoque.api.domain.despesa.DadosDespesa;
 import br.com.controle.estoque.api.domain.despesa.DespesaDTO;
 import br.com.controle.estoque.api.domain.despesa.DespesaService;
@@ -33,6 +34,11 @@ public class DespesaController {
     @GetMapping("/{id}")
     public ResponseEntity<DespesaDTO> consultarDespesaPorId(@PathVariable Long id) {
         return ResponseEntity.ok(despesaService.listarDespesa(id));
+    }
+
+    @PutMapping
+    public ResponseEntity<DespesaDTO> atualizarDespesaPorId(@RequestBody @Valid DadosAtualizacaoDespesa dadosAtualizacaoDespesa) {
+        return ResponseEntity.ok(despesaService.atualizarDespesa(dadosAtualizacaoDespesa));
     }
 
 }

@@ -26,4 +26,11 @@ public class DespesaService {
     public DespesaDTO listarDespesa(Long id) {
         return new DespesaDTO(despesaRepository.getReferenceById(id));
     }
+
+    @Transactional
+    public DespesaDTO atualizarDespesa(DadosAtualizacaoDespesa dadosAtualizacaoDespesa) {
+        var despesa = despesaRepository.getReferenceById(dadosAtualizacaoDespesa.id());
+        despesa.atualizarDespesa(dadosAtualizacaoDespesa);
+        return new DespesaDTO(despesa);
+    }
 }
