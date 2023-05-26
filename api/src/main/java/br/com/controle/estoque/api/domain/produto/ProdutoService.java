@@ -13,16 +13,14 @@ public class ProdutoService {
     private ProdutoRepository produtoRepository;
 
 
-    @Transactional(readOnly = true)
-    public List<ProdutoDTO> listarProdutos() {
-            return produtoRepository.findAllByAtivoTrue().stream().map(ProdutoDTO::new).toList();
-    }
-
     @Transactional
     public ProdutoDTO incluirProduto(DadosProduto dadosProduto) {
-        var produto = new Produto(dadosProduto);
-        produtoRepository.save(produto);
-        return new ProdutoDTO(produto);
+        return new ProdutoDTO(produtoRepository.save(new Produto(dadosProduto)));
+    }
+
+    @Transactional(readOnly = true)
+    public List<ProdutoDTO> listarProdutos() {
+        return produtoRepository.findAllByAtivoTrue().stream().map(ProdutoDTO::new).toList();
     }
 
     @Transactional(readOnly = true)
