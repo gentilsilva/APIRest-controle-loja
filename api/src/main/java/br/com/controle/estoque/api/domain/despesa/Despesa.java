@@ -43,4 +43,8 @@ public class Despesa {
             this.dataDespesa = dadosAtualizacaoDespesa.dataDespesa();
         }
     }
+
+    public void inativar() {
+        this.ativo = false;
+    }
 }

@@ -41,4 +41,10 @@ public class DespesaController {
         return ResponseEntity.ok(despesaService.atualizarDespesa(dadosAtualizacaoDespesa));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> inativarDespesaPorId(@PathVariable Long id) {
+        despesaService.inativarDespesa(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

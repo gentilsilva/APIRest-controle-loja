@@ -19,18 +19,24 @@ public class DespesaService {
 
     @Transactional(readOnly = true)
     public List<DespesaDTO> listarDespesas() {
-        return despesaRepository.findAll().stream().map(DespesaDTO::new).toList();
+        return despesaRepository.findAllByAtivoTrue().stream().map(DespesaDTO::new).toList();
     }
 
     @Transactional(readOnly = true)
     public DespesaDTO listarDespesa(Long id) {
-        return new DespesaDTO(despesaRepository.getReferenceById(id));
+        return new DespesaDTO(despesaRepository.getReferenceByIdAndAtivoTrue(id));
     }
 
     @Transactional
     public DespesaDTO atualizarDespesa(DadosAtualizacaoDespesa dadosAtualizacaoDespesa) {
-        var despesa = despesaRepository.getReferenceById(dadosAtualizacaoDespesa.id());
+        var despesa = despesaRepository.getReferenceByIdAndAtivoTrue(dadosAtualizacaoDespesa.id());
         despesa.atualizarDespesa(dadosAtualizacaoDespesa);
         return new DespesaDTO(despesa);
+    }
+
+    @Transactional
+    public void inativarDespesa(Long id) {
+        var despesa = despesaRepository.getReferenceById(id);
+        despesa.inativar();
     }
 }
