@@ -33,4 +33,9 @@ public class ProdutoController {
         return ResponseEntity.ok(produtoService.listarProdutos());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ProdutoDTO> listarProdutoPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(produtoService.listarProdutoPorId(id));
+    }
+
 }

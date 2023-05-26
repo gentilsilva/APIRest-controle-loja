@@ -21,4 +21,8 @@ public class ProdutoService {
         produtoRepository.save(produto);
         return new ProdutoDTO(produto);
     }
+
+    public ProdutoDTO listarProdutoPorId(Long id) {
+        return new ProdutoDTO(produtoRepository.getReferenceById(id));
+    }
 }
