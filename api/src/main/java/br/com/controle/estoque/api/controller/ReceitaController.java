@@ -6,11 +6,10 @@ import br.com.controle.estoque.api.domain.receita.ReceitaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("receitas")
@@ -24,6 +23,16 @@ public class ReceitaController {
         var receita = receitaService.incluirReceita(dadosReceita);
         var uri = uriBuider.path("receitas/{id}").buildAndExpand(receita.id()).toUri();
         return ResponseEntity.created(uri).body(receita);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ReceitaDTO>> consultarReceitas() {
+        return ResponseEntity.ok(receitaService.listarReceitas());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ReceitaDTO> consultarReceitaPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(receitaService.listarReceita(id));
     }
 
 }
