@@ -6,11 +6,10 @@ import br.com.controle.loja.api.domain.estoque.EstoqueService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("estoque")
@@ -24,6 +23,16 @@ public class EstoqueController {
         var estoqueDTO = estoqueService.incluirNoEstoque(dadosCadastroEstoque);
         var uri = uriBuilder.path("estoque/{id}").buildAndExpand(estoqueDTO.id()).toUri();
         return ResponseEntity.created(uri).body(estoqueDTO);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<EstoqueDTO>> consultarProdutosEmEstoque() {
+        return ResponseEntity.ok(estoqueService.listarProdutosEmEstoque());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<EstoqueDTO> consultarEmEstoquePorId(@PathVariable Long id) {
+        return ResponseEntity.ok(estoqueService.listarEmEstoquePorid(id));
     }
 
 }

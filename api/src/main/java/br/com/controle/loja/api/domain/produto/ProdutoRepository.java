@@ -8,4 +8,5 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
     List<Produto> findAllByAtivoTrue();
 
     Produto getReferenceByIdAndAtivoTrue(Long id);
+
 }

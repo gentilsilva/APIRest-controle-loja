@@ -36,7 +36,7 @@ public class DespesaService {
 
     @Transactional
     public void inativarDespesa(Long id) {
-        var despesa = despesaRepository.getReferenceById(id);
+        var despesa = despesaRepository.getReferenceByIdAndAtivoTrue(id);
         despesa.inativar();
     }
 }

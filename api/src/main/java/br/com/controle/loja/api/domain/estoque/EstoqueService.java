@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class EstoqueService {
 
@@ -18,5 +20,15 @@ public class EstoqueService {
     public EstoqueDTO incluirNoEstoque(DadosCadastroEstoque dadosCadastroEstoque) {
         var produto = produtoRepository.getReferenceByIdAndAtivoTrue(dadosCadastroEstoque.idProduto());
         return new EstoqueDTO(estoqueRepository.save(new Estoque(dadosCadastroEstoque, produto)));
+    }
+
+    @Transactional(readOnly = true)
+    public List<EstoqueDTO> listarProdutosEmEstoque() {
+        return estoqueRepository.findAll().stream().map(EstoqueDTO::new).toList();
+    }
+
+    @Transactional(readOnly = true)
+    public EstoqueDTO listarEmEstoquePorid(Long id) {
+        return new EstoqueDTO(estoqueRepository.getReferenceById(id));
     }
 }
