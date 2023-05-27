@@ -1,7 +1,7 @@
 package br.com.controle.loja.api.controller;
 
 import br.com.controle.loja.api.domain.despesa.DadosAtualizacaoDespesa;
-import br.com.controle.loja.api.domain.despesa.DadosDespesa;
+import br.com.controle.loja.api.domain.despesa.DadosCadastroDespesa;
 import br.com.controle.loja.api.domain.despesa.DespesaDTO;
 import br.com.controle.loja.api.domain.despesa.DespesaService;
 import jakarta.validation.Valid;
@@ -20,8 +20,8 @@ public class DespesaController {
     private DespesaService despesaService;
 
     @PostMapping
-    public ResponseEntity<DespesaDTO> cadastrarDespesa(@RequestBody @Valid DadosDespesa dadosDespesa, UriComponentsBuilder uriBuilder) {
-        var despesaDTO = despesaService.incluirDespesa(dadosDespesa);
+    public ResponseEntity<DespesaDTO> cadastrarDespesa(@RequestBody @Valid DadosCadastroDespesa dadosCadastroDespesa, UriComponentsBuilder uriBuilder) {
+        var despesaDTO = despesaService.incluirDespesa(dadosCadastroDespesa);
         var uri = uriBuilder.path("despesas/{id}").buildAndExpand(despesaDTO.id()).toUri();
         return ResponseEntity.created(uri).body(despesaDTO);
     }

@@ -1,7 +1,7 @@
 package br.com.controle.loja.api.controller;
 
 import br.com.controle.loja.api.domain.receita.DadosAtualizacaoReceita;
-import br.com.controle.loja.api.domain.receita.DadosReceita;
+import br.com.controle.loja.api.domain.receita.DadosCadastroReceita;
 import br.com.controle.loja.api.domain.receita.ReceitaDTO;
 import br.com.controle.loja.api.domain.receita.ReceitaService;
 import jakarta.validation.Valid;
@@ -20,8 +20,8 @@ public class ReceitaController {
     private ReceitaService receitaService;
 
     @PostMapping
-    public ResponseEntity<ReceitaDTO> cadastrarReceita(@RequestBody @Valid DadosReceita dadosReceita, UriComponentsBuilder uriBuider) {
-        var receita = receitaService.incluirReceita(dadosReceita);
+    public ResponseEntity<ReceitaDTO> cadastrarReceita(@RequestBody @Valid DadosCadastroReceita dadosCadastroReceita, UriComponentsBuilder uriBuider) {
+        var receita = receitaService.incluirReceita(dadosCadastroReceita);
         var uri = uriBuider.path("receitas/{id}").buildAndExpand(receita.id()).toUri();
         return ResponseEntity.created(uri).body(receita);
     }

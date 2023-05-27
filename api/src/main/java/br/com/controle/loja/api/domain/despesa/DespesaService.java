@@ -13,8 +13,8 @@ public class DespesaService {
     private DespesaRepository despesaRepository;
 
     @Transactional
-    public DespesaDTO incluirDespesa(DadosDespesa dadosDespesa) {
-        return new DespesaDTO(despesaRepository.save(new Despesa(dadosDespesa)));
+    public DespesaDTO incluirDespesa(DadosCadastroDespesa dadosCadastroDespesa) {
+        return new DespesaDTO(despesaRepository.save(new Despesa(dadosCadastroDespesa)));
     }
 
     @Transactional(readOnly = true)

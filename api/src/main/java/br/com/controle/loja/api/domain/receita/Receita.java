@@ -27,10 +27,10 @@ public class Receita {
     private LocalDate dataReceita;
     private Boolean ativo;
 
-    public Receita(DadosReceita dadosReceita) {
-        this.descricao = dadosReceita.descricao();
-        this.valor = dadosReceita.valor();
-        this.dataReceita = dadosReceita.dataReceita();
+    public Receita(DadosCadastroReceita dadosCadastroReceita) {
+        this.descricao = dadosCadastroReceita.descricao();
+        this.valor = dadosCadastroReceita.valor();
+        this.dataReceita = dadosCadastroReceita.dataReceita();
         this.ativo = true;
     }
 

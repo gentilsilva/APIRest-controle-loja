@@ -13,8 +13,8 @@ public class ProdutoService {
     private ProdutoRepository produtoRepository;
 
     @Transactional
-    public ProdutoDTO incluirProduto(DadosProduto dadosProduto) {
-        return new ProdutoDTO(produtoRepository.save(new Produto(dadosProduto)));
+    public ProdutoDTO incluirProduto(DadosCadastroProduto dadosCadastroProduto) {
+        return new ProdutoDTO(produtoRepository.save(new Produto(dadosCadastroProduto)));
     }
 
     @Transactional(readOnly = true)

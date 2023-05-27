@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
-public record DadosProduto(
+public record DadosCadastroProduto(
         @NotNull
         String nome,
         @NotNull

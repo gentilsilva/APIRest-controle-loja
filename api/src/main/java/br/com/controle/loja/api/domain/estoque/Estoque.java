@@ -23,4 +23,9 @@ public class Estoque {
     private Integer quantidade;
 
 
+    public Estoque(DadosCadastroEstoque dadosCadastroEstoque, Produto produto) {
+        this.idProduto = produto;
+        this.quantidade = dadosCadastroEstoque.quantidade();
+    }
+
 }

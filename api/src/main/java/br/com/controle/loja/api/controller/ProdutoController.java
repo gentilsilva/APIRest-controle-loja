@@ -1,7 +1,7 @@
 package br.com.controle.loja.api.controller;
 
 import br.com.controle.loja.api.domain.produto.DadosAtualizacaoProduto;
-import br.com.controle.loja.api.domain.produto.DadosProduto;
+import br.com.controle.loja.api.domain.produto.DadosCadastroProduto;
 import br.com.controle.loja.api.domain.produto.ProdutoDTO;
 import br.com.controle.loja.api.domain.produto.ProdutoService;
 import jakarta.validation.Valid;
@@ -20,8 +20,8 @@ public class ProdutoController {
     private ProdutoService produtoService;
 
     @PostMapping
-    public ResponseEntity<ProdutoDTO> cadastrarProduto(@RequestBody @Valid DadosProduto dadosProduto, UriComponentsBuilder uriBuilder) {
-        ProdutoDTO produtoDTO = produtoService.incluirProduto(dadosProduto);
+    public ResponseEntity<ProdutoDTO> cadastrarProduto(@RequestBody @Valid DadosCadastroProduto dadosCadastroProduto, UriComponentsBuilder uriBuilder) {
+        var produtoDTO = produtoService.incluirProduto(dadosCadastroProduto);
         var uri = uriBuilder.path("produtos/{id}").buildAndExpand(produtoDTO.id()).toUri();
         return ResponseEntity.created(uri).body(produtoDTO);
     }

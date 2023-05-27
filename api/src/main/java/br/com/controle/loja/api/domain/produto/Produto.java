@@ -28,12 +28,12 @@ public class Produto {
     private Boolean ativo;
 
 
-    public Produto(DadosProduto dadosProduto) {
+    public Produto(DadosCadastroProduto dadosCadastroProduto) {
         this.ativo = true;
-        this.nome = dadosProduto.nome();
-        this.codigo = dadosProduto.codigo();
-        this.descricao = dadosProduto.descricao();
-        this.valorUnitario = dadosProduto.valorUnitario();
+        this.nome = dadosCadastroProduto.nome();
+        this.codigo = dadosCadastroProduto.codigo();
+        this.descricao = dadosCadastroProduto.descricao();
+        this.valorUnitario = dadosCadastroProduto.valorUnitario();
     }
 
     public void atualizarProduto(DadosAtualizacaoProduto dadosAtualizacaoProduto) {

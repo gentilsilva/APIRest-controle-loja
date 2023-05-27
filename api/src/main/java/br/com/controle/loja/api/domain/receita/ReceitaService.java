@@ -13,8 +13,8 @@ public class ReceitaService {
     private ReceitaRepository receitaRepository;
 
     @Transactional
-    public ReceitaDTO incluirReceita(DadosReceita dadosReceita) {
-        return new ReceitaDTO(receitaRepository.save(new Receita(dadosReceita)));
+    public ReceitaDTO incluirReceita(DadosCadastroReceita dadosCadastroReceita) {
+        return new ReceitaDTO(receitaRepository.save(new Receita(dadosCadastroReceita)));
     }
     @Transactional(readOnly = true)
     public List<ReceitaDTO> listarReceitas() {

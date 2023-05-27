@@ -27,10 +27,10 @@ public class Despesa {
     private LocalDate dataDespesa;
     private Boolean ativo;
 
-    public Despesa(DadosDespesa dadosDespesa) {
-        this.descricao = dadosDespesa.descricao();
-        this.valor = dadosDespesa.valor();
-        this.dataDespesa = dadosDespesa.dataDespesa();
+    public Despesa(DadosCadastroDespesa dadosCadastroDespesa) {
+        this.descricao = dadosCadastroDespesa.descricao();
+        this.valor = dadosCadastroDespesa.valor();
+        this.dataDespesa = dadosCadastroDespesa.dataDespesa();
         this.ativo = true;
     }
 
