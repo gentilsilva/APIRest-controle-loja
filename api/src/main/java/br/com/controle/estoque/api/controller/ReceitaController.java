@@ -37,8 +37,14 @@ public class ReceitaController {
     }
 
     @PutMapping
-    public ResponseEntity<ReceitaDTO> atualizarReceitaPorId(@RequestBody @Valid DadosAtualizacaoReceita dadosAtualizacaoReceita) {        ;
+    public ResponseEntity<ReceitaDTO> atualizarReceitaPorId(@RequestBody @Valid DadosAtualizacaoReceita dadosAtualizacaoReceita) {
         return ResponseEntity.ok(receitaService.atualizarReceita(dadosAtualizacaoReceita));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> inativarReceitaPorId(@PathVariable Long id) {
+        receitaService.inativarReceita(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

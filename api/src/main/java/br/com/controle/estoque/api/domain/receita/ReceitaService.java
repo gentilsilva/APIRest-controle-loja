@@ -32,4 +32,10 @@ public class ReceitaService {
         receita.atualizar(dadosAtualizacaoReceita);
         return new ReceitaDTO(receita);
     }
+
+    @Transactional
+    public void inativarReceita(Long id) {
+        var receita = receitaRepository.getReferenceByIdAndAtivoTrue(id);
+        receita.inativar();
+    }
 }

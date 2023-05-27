@@ -26,7 +26,7 @@ public class Receita {
     private Boolean ativo;
 
     public Receita(DadosReceita dadosReceita) {
-        this.descricao = dadosReceita.descricao();;
+        this.descricao = dadosReceita.descricao();
         this.valor = dadosReceita.valor();
         this.dataReceita = dadosReceita.dataReceita();
         this.ativo = true;
@@ -42,5 +42,9 @@ public class Receita {
         if(dadosAtualizacaoReceita.dataReceita() != null) {
             this.dataReceita = dadosAtualizacaoReceita.dataReceita();
         }
+    }
+
+    public void inativar() {
+        this.ativo = false;
     }
 }
