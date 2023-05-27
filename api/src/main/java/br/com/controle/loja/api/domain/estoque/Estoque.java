@@ -28,4 +28,7 @@ public class Estoque {
         this.quantidade = dadosCadastroEstoque.quantidade();
     }
 
+    public void atualizar(DadosAtualizarEstoque dadosAtualizarEstoque) {
+        this.quantidade = dadosAtualizarEstoque.quantidade();
+    }
 }
