@@ -31,4 +31,16 @@ public class Receita {
         this.dataReceita = dadosReceita.dataReceita();
         this.ativo = true;
     }
+
+    public void atualizar(DadosAtualizacaoReceita dadosAtualizacaoReceita) {
+        if(dadosAtualizacaoReceita.descricao() != null) {
+            this.descricao = dadosAtualizacaoReceita.descricao();
+        }
+        if(dadosAtualizacaoReceita.valor() != null) {
+            this.valor = dadosAtualizacaoReceita.valor();
+        }
+        if(dadosAtualizacaoReceita.dataReceita() != null) {
+            this.dataReceita = dadosAtualizacaoReceita.dataReceita();
+        }
+    }
 }

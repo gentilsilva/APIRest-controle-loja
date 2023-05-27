@@ -1,5 +1,6 @@
 package br.com.controle.estoque.api.controller;
 
+import br.com.controle.estoque.api.domain.receita.DadosAtualizacaoReceita;
 import br.com.controle.estoque.api.domain.receita.DadosReceita;
 import br.com.controle.estoque.api.domain.receita.ReceitaDTO;
 import br.com.controle.estoque.api.domain.receita.ReceitaService;
@@ -33,6 +34,11 @@ public class ReceitaController {
     @GetMapping("/{id}")
     public ResponseEntity<ReceitaDTO> consultarReceitaPorId(@PathVariable Long id) {
         return ResponseEntity.ok(receitaService.listarReceita(id));
+    }
+
+    @PutMapping
+    public ResponseEntity<ReceitaDTO> atualizarReceitaPorId(@RequestBody @Valid DadosAtualizacaoReceita dadosAtualizacaoReceita) {        ;
+        return ResponseEntity.ok(receitaService.atualizarReceita(dadosAtualizacaoReceita));
     }
 
 }
