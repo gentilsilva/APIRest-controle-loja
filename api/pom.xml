@@ -8,11 +8,11 @@
 		<version>3.1.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>br.com.controle.estoque</groupId>
+	<groupId>br.com.controle.loja</groupId>
 	<artifactId>api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>api</name>
-	<description>Api para controle de estoque</description>
+	<description>Api para controle de caixa e estoque de uma loja</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
