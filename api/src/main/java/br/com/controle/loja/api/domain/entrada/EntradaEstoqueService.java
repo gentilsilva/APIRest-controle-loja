@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class EntradaEstoqueService {
 
@@ -28,5 +30,14 @@ public class EntradaEstoqueService {
         estoqueService.atualizar(atualizarQuantidade, dadosCadastroEntrada.idProduto());
 
         return new EntradaEstoqueDTO(entradaEstoqueRepository.save(new EntradaEstoque(dadosCadastroEntrada, produto)));
+    }
+
+    @Transactional(readOnly = true)
+    public List<EntradaEstoqueDTO> listarAtualizacoesEmEstoque() {
+        return entradaEstoqueRepository.findAll().stream().map(EntradaEstoqueDTO::new).toList();
+    }
+
+    public EntradaEstoqueDTO listarEntradaEstoquePorIdProduto(Long idProduto) {
+        return new EntradaEstoqueDTO(entradaEstoqueRepository.listarPorIdProduto(idProduto));
     }
 }
