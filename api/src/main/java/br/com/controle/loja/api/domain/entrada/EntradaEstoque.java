@@ -27,4 +27,9 @@ public class EntradaEstoque {
     @Column(name = "data_entrada")
     private LocalDate dataEntrada;
 
+    public EntradaEstoque(DadosCadastroEntrada dadosCadastroEntrada, Produto produto) {
+        this.idProduto = produto;
+        this.quantidade = dadosCadastroEntrada.quantidade();
+        this.dataEntrada = dadosCadastroEntrada.dataEntrada();
+    }
 }
