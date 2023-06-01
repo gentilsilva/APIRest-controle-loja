@@ -32,4 +32,16 @@ public class EntradaEstoque {
         this.quantidade = dadosCadastroEntrada.quantidade();
         this.dataEntrada = dadosCadastroEntrada.dataEntrada();
     }
+
+    public void atualizarEntradaEstoque(DadosAtualizacaoEntradaEstoque dadosAtualizacaoEntradaEstoque, Produto produto, int atualizaQuantidade) {
+        if(dadosAtualizacaoEntradaEstoque.idProduto() != null) {
+            this.idProduto = produto;
+        }
+        if(dadosAtualizacaoEntradaEstoque.quantidade() != null) {
+            this.quantidade = atualizaQuantidade;
+        }
+        if(dadosAtualizacaoEntradaEstoque.dataEntrada() != null) {
+            this.dataEntrada = dadosAtualizacaoEntradaEstoque.dataEntrada();
+        }
+    }
 }

@@ -2,7 +2,6 @@ package br.com.controle.loja.api.domain.entrada;
 
 import br.com.controle.loja.api.domain.estoque.EstoqueService;
 import br.com.controle.loja.api.domain.produto.ProdutoRepository;
-import br.com.controle.loja.api.domain.produto.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +26,7 @@ public class EntradaEstoqueService {
         var produtoEstoque = estoqueService.listarEmEstoquePorid(dadosCadastroEntrada.idProduto());
         var produto = produtoRepository.getReferenceByIdAndAtivoTrue(dadosCadastroEntrada.idProduto());
         var atualizarQuantidade = produtoEstoque.quantidade() + dadosCadastroEntrada.quantidade();
-        estoqueService.atualizar(atualizarQuantidade, dadosCadastroEntrada.idProduto());
+        estoqueService.atualizarQuantidade(atualizarQuantidade, dadosCadastroEntrada.idProduto());
 
         return new EntradaEstoqueDTO(entradaEstoqueRepository.save(new EntradaEstoque(dadosCadastroEntrada, produto)));
     }
@@ -39,5 +38,18 @@ public class EntradaEstoqueService {
 
     public EntradaEstoqueDTO listarEntradaEstoquePorIdProduto(Long idProduto) {
         return new EntradaEstoqueDTO(entradaEstoqueRepository.listarPorIdProduto(idProduto));
+    }
+
+    public EntradaEstoqueDTO atualizarEntradaEEstoque(DadosAtualizacaoEntradaEstoque dadosAtualizacaoEntradaEstoque) {
+        var produtoEstoque = estoqueService.listarEmEstoquePorid(dadosAtualizacaoEntradaEstoque.idProduto());
+        var produto = produtoRepository.getReferenceByIdAndAtivoTrue(dadosAtualizacaoEntradaEstoque.idProduto());
+        var entradaEstoque = entradaEstoqueRepository.getReferenceById(dadosAtualizacaoEntradaEstoque.id());
+
+        var atualizaQuantidade = (produtoEstoque.quantidade() - entradaEstoque.getQuantidade()) + dadosAtualizacaoEntradaEstoque.quantidade();
+
+        entradaEstoque.atualizarEntradaEstoque(dadosAtualizacaoEntradaEstoque, produto, atualizaQuantidade);
+        estoqueService.atualizarQuantidade(atualizaQuantidade, dadosAtualizacaoEntradaEstoque.idProduto());
+
+        return new EntradaEstoqueDTO(entradaEstoque);
     }
 }

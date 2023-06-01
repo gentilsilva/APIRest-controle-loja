@@ -1,5 +1,7 @@
 package br.com.controle.loja.api.domain.estoque;
 
+import br.com.controle.loja.api.domain.entrada.DadosAtualizacaoEntradaEstoque;
+import br.com.controle.loja.api.domain.produto.Produto;
 import br.com.controle.loja.api.domain.produto.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,9 +40,8 @@ public class EstoqueService {
     }
 
     @Transactional
-    public void atualizar(Integer atualizarQuantidade, Long idProduto) {
+    public void atualizarQuantidade(Integer atualizarQuantidade, Long idProduto) {
         var estoque = estoqueRepository.listarPorIdProduto(idProduto);
         estoque.atualizar(atualizarQuantidade);
     }
-
 }

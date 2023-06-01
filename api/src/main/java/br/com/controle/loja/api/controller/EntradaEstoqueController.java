@@ -1,5 +1,6 @@
 package br.com.controle.loja.api.controller;
 
+import br.com.controle.loja.api.domain.entrada.DadosAtualizacaoEntradaEstoque;
 import br.com.controle.loja.api.domain.entrada.DadosCadastroEntrada;
 import br.com.controle.loja.api.domain.entrada.EntradaEstoqueDTO;
 import br.com.controle.loja.api.domain.entrada.EntradaEstoqueService;
@@ -33,6 +34,11 @@ public class EntradaEstoqueController {
     @GetMapping("{idProduto}")
     public ResponseEntity<EntradaEstoqueDTO> consultarEntradaEstoquePorIdProduto(@PathVariable Long idProduto) {
         return ResponseEntity.ok(entradaEstoqueService.listarEntradaEstoquePorIdProduto(idProduto));
+    }
+
+    @PutMapping
+    public ResponseEntity<EntradaEstoqueDTO> atualizarEntradaEstoqueEEstoque(@RequestBody @Valid DadosAtualizacaoEntradaEstoque dadosAtualizacaoEntradaEstoque) {
+        return ResponseEntity.ok(entradaEstoqueService.atualizarEntradaEEstoque(dadosAtualizacaoEntradaEstoque));
     }
 
 }
